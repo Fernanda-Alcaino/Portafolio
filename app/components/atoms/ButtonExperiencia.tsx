@@ -2,12 +2,6 @@ import {Button} from "antd";
 
 
 
-
-
-interface ButtonProps {
-    text: string,
-}
-
 const ButtonPagina  = (): React.JSX.Element => {
     return (
         <Button color="default" variant="link">
@@ -18,4 +12,4 @@ const ButtonPagina  = (): React.JSX.Element => {
 
 }
 
-export default Button;
+export default ButtonPagina;

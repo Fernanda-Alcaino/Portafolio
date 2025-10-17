@@ -1,39 +1,91 @@
-import {Avatar, Button, Layout} from "antd";
-import Logo from "~/components/atoms/Logo";
-import ButtonPagina from "~/components/atoms/Button";
+import React from "react";
+import { Layout, Menu, theme } from "antd";
+import {
+    UserOutlined,
+    ProjectOutlined,
+    SolutionOutlined,
+    HomeOutlined,
+} from "@ant-design/icons";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
+const { Header, Content, Footer } = Layout;
 
-const { Header, Footer, Content } = Layout;
+const HomeLayout = () => {
+    const {
+        token: { colorBgContainer },
+    } = theme.useToken();
 
-function HeaderCont() {
-    return null;
-}
+    const location = useLocation();
 
-export default function HomeLayout() {
+    const menuItems = [
+        {
+            key: "/",
+            icon: <HomeOutlined />,
+            label: <Link to="/">Inicio</Link>,
+        },
+        {
+            key: "/experiencia",
+            icon: <SolutionOutlined />,
+            label: <Link to="/experiencia">Experiencia</Link>,
+        },
+        {
+            key: "/proyectos",
+            icon: <ProjectOutlined />,
+            label: <Link to="/proyectos">Proyectos</Link>,
+        },
+        {
+            key: "/acerca-de-mi",
+            icon: <UserOutlined />,
+            label: <Link to="/acerca-de-mi">Acerca de mí</Link>,
+        },
+    ];
+
     return (
-        <Layout style={layoutStyle}>
-            <Header style={headerStyle}>
-                <HeaderCont />
-                <Logo />
+        <Layout style={{ minHeight: "100vh", background: "#f9f6ff" }}>
+            <Header
+                style={{
+                    background: "#9b59b6",
+                    display: "flex",
+                    alignItems: "center",
+                }}
+            >
+                <div
+                    style={{
+                        color: "#fff",
+                        fontWeight: "bold",
+                        fontSize: "20px",
+                        marginRight: "2rem",
+                    }}
+                >
+                    Mi Portafolio
+                </div>
+                <Menu
+                    theme="dark"
+                    mode="horizontal"
+                    selectedKeys={[location.pathname]}
+                    items={menuItems}
+                    style={{
+                        background: "transparent",
+                        flex: 1,
+                        minWidth: 0,
+                    }}
+                />
             </Header>
-            <Content style={contentStyle}>
-                <h1>Bienvenido a mi portafolio</h1>
+
+            <Content
+                style={{
+                    padding: "40px 80px",
+                    background: colorBgContainer,
+                }}
+            >
+                <Outlet />
             </Content>
-            <Footer style={footerStyle}>
-            <Button/>
+
+            <Footer style={{ textAlign: "center", background: "#f9f6ff" }}>
+                © {new Date().getFullYear()} Creado con 💜 por [Tu Nombre]
             </Footer>
         </Layout>
     );
-}
-const layoutStyle = {
+};
 
-}
-const headerStyle = {
-
-}
-const contentStyle = {
-
-}
-const footerStyle = {
-
-}
+export default HomeLayout;

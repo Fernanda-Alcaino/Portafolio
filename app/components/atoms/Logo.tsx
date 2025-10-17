@@ -1,11 +1,19 @@
-import {Avatar, Layout} from "antd";
+import React from "react";
 
-
-export default function Logo () {
+const Logo = () => {
     return (
-        <Layout>
-            <Avatar src={<img draggable={false} src={"assets/image/logo.png"} alt="avatar"/>}/>
-        </Layout>
-    )
+        <div
+            style={{
+                color: "#fff",
+                fontSize: "20px",
+                fontWeight: "bold",
+                letterSpacing: "1px",
+            }}
 
-}
+        >
+            + MiPortafolio
+        </div>
+    );
+};
+
+export default Logo;
